@@ -37,9 +37,7 @@
           class="btn rounded-pill"
           (click)="searchDocumentNumber()"
           [disabled]="!documentForm.valid"
-          [class.btn-primary]="documentForm.valid"
-          [class.btn-light]="!documentForm.valid"
-          [class.opacity-25]="!documentForm.valid"
+          [ngClass]="documentForm.valid ? 'btn-primary' : 'btn-light opacity-25'"
         >
           Buscar
         </button>
