@@ -1,5 +1,7 @@
 <div class="card" style="width: 18rem">
-  <div class="form-text text-secondary text-opacity-25 bg-light px-3">Todos los campos son obligatorios</div>
+  <div class="form-text text-secondary text-opacity-25 bg-light px-3">
+    Todos los campos son obligatorios
+  </div>
   <div class="card-body bg-light">
     <form [formGroup]="documentForm">
       <div class="mb-3">
@@ -29,7 +31,7 @@
         />
       </div>
 
-      <div class="d-grid gap-2 my-2">
+      <div class="d-grid gap-2">
         <button
           type="submit"
           class="btn rounded-pill"
@@ -41,6 +43,9 @@
         >
           Buscar
         </button>
+        <div *ngIf="showMsg" class="text-danger text-center">
+          Documento no encontrado
+        </div>
       </div>
     </form>
   </div>

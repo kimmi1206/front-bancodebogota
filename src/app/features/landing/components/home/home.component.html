@@ -1,0 +1,34 @@
+<div class="card" style="width: 18rem">
+  <div class="card-title fw-bold px-3">Información básica</div>
+  <div class="card-body bg-light">
+    <fieldset class="opacity-50" disabled>
+      <div class="mb-3">
+        <label for="primer-apellido" class="form-label">Primer apellido</label>
+        <input
+          type="text"
+          id="primer-apellido"
+          class="form-control"
+          placeholder="{{ user.primerApellido }}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="primer-nombre" class="form-label">Primer nombre</label>
+        <input
+          type="text"
+          id="primer-nombre"
+          class="form-control"
+          placeholder="{{ user.primerNombre }}"
+        />
+      </div>
+    </fieldset>
+    <div class="d-grid gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary rounded-pill"
+        (click)="goBack()"
+      >
+        Volver
+      </button>
+    </div>
+  </div>
+</div>
