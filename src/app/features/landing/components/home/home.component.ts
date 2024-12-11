@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../../../services/user.service';
-import { User } from '../../../../shared/models/user';
+import { ClienteService } from '../../../../services/cliente.service';
+import { Cliente } from '../../../../shared/models/cliente';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +10,16 @@ import { User } from '../../../../shared/models/user';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  user: User = {} as User;
+  cliente: Cliente = {} as Cliente;
 
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
-    private readonly userService: UserService
+    private readonly clienteService: ClienteService
   ) {
-    this.userService.queryData.subscribe(async (data: any) => {
+    this.clienteService.queryData.subscribe(async (data: any) => {
       if (data?.data) {
-        this.user = data.data;
+        this.cliente = data.data;
       }
     });
   }

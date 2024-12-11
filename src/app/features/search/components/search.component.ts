@@ -9,7 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../shared/pipes/number-pipe';
 import { Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
+import { ClienteService } from '../../../services/cliente.service';
 
 @Component({
   selector: 'app-search',
@@ -22,7 +22,7 @@ export class SearchComponent {
 
   constructor(
     private readonly router: Router,
-    private readonly userService: UserService
+    private readonly clienteService: ClienteService
   ) {}
 
   documentForm = new FormGroup({
@@ -48,12 +48,12 @@ export class SearchComponent {
     let docNumber = this.documentForm.get('docNumber')?.value ?? '';
     let docType = this.documentForm.get('docType')?.value ?? '';
     
-    let user = this.userService.getDocumentMock(docNumber, docType);
-    if (!user) {
+    let cliente = this.clienteService.getDocumentMock(docNumber, docType);
+    if (!cliente) {
       this.showMsg = true;
       return;
     }
-    this.userService.queryData.next({ data: user });
+    this.clienteService.queryData.next({ data: cliente });
     this.navigate(['/home']);
   }
 
