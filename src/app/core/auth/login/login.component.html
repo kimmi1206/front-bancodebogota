@@ -1,0 +1,47 @@
+<div class="card" style="width: 18rem">
+  <div class="form-text text-secondary text-opacity-25 bg-light px-3">Todos los campos son obligatorios</div>
+  <div class="card-body bg-light">
+    <form [formGroup]="documentForm">
+      <div class="mb-3">
+        <label for="doc-type" class="form-label">Tipo de documento</label>
+        <select
+          formControlName="docType"
+          class="form-select"
+          id="doc-type"
+          aria-label="Tipo de documento"
+        >
+          <option value="C">Cedula de Ciudadanía</option>
+          <option value="P">Pasaporte</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="doc-number" class="form-label">Número de documento</label>
+        <input
+          [value]="documentForm.get('docNumber')?.value | numberPipe"
+          formControlName="docNumber"
+          name="docNumber"
+          type="text"
+          class="form-control"
+          id="doc-number"
+          (input)="setNumber($event)"
+          maxlength="14"
+        />
+      </div>
+
+      <div class="d-grid gap-2 my-2">
+        <button
+          type="submit"
+          class="btn rounded-pill"
+          (click)="searchDocumentNumber()"
+          [disabled]="!documentForm.valid"
+          [class.btn-primary]="documentForm.valid"
+          [class.btn-light]="!documentForm.valid"
+          [class.opacity-25]="!documentForm.valid"
+        >
+          Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
