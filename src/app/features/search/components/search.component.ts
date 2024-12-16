@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { NumberPipe } from '../../../shared/pipes/number-pipe';
 import { Router } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.service';
+import { not } from 'rxjs/internal/util/not';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,11 @@ import { ClienteService } from '../../../services/cliente.service';
 })
 export class SearchComponent {
   showMsg: boolean = false;
+  msg: string = '';
+  messages = {
+    notFound: 'Cliente no encontrado',
+    error: 'Error al buscar el cliente',
+  };
 
   constructor(
     private readonly router: Router,
@@ -48,14 +54,19 @@ export class SearchComponent {
     let docNumber = this.documentForm.get('docNumber')?.value ?? '';
     let docType = this.documentForm.get('docType')?.value ?? '';
 
-    this.clienteService.getDocument(docNumber, docType)?.subscribe({
+    this.clienteService.getDocument(docType, docNumber)?.subscribe({
       next: (data) => {
-        console.log('data', data);
+        if (!data) {
+          this.msg = this.messages.notFound;
+          this.showMsg = true;
+          return;
+        }
         this.clienteService.queryData.next({ data });
         this.navigate(['/home']);
       },
       error: (error) => {
-        console.error('error', error);
+        console.error('error', error.message);
+        this.msg = this.messages.error;
         this.showMsg = true;
       },
     });
