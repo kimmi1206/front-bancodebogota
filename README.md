@@ -1,59 +1,63 @@
-# FrontBdebog
+# FRONTEND
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.4.
+## PASOS PARA REALIZAR DESPLIEGUE DEL FRONTEND EN AMAZON AWS S3
 
-## Development server
+La guía para desplegar el frontend se encuentra en el link:<br>
 
-To start a local development server, run:
+<https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html>
 
-```bash
-ng serve
-```
+1. Ubicados en la carpeta raiz del proyecto, se exporta el frontend usando el comando:<br>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+	*`ng build --configuration production`*
 
-## Code scaffolding
+2. Luego se crea el bucket en AWS S3, desactivando casilla para bloquear todo el acceso público.<br>
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+   ![S3 Create Bucket](https://raw.githubusercontent.com/kimmi1206/documentacion-bancodebogota/refs/heads/main/DESPLIEGUE/s3-deploy-crear-bucket.png)
 
-```bash
-ng generate component component-name
-```
+3. Luego se suben los archivos ubicados en la carpeta “build” dentro del directorio del proyecto.<br>
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+4. Se habilita el alojamiento de sitio web estático de AWS S3 en la pestaña propiedades del bucket:<br>
 
-## Building
+   ![S3 Enable Static Website Hosting](https://raw.githubusercontent.com/kimmi1206/documentacion-bancodebogota/refs/heads/main/DESPLIEGUE/s3-deploy-static-website.png)
 
-To build the project run:
+5. Finalmente, se crea una política tipo bucket para permitir el acceso público de solo lectura:<br>
 
-```bash
-ng build
-```
+   ![S3 Create Bucket Policy](https://raw.githubusercontent.com/kimmi1206/documentacion-bancodebogota/refs/heads/main/DESPLIEGUE/s3-deploy-bucket-policy.png)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## REPOSITORIOS:
 
-```bash
-ng test
-```
+#### - FRONTEND: https://github.com/kimmi1206/front-bancodebogota
 
-## Running end-to-end tests
+#### - BACKEND:	 https://github.com/kimmi1206/back-bancodebogota
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## ENLACES DESPLEGADOS:
 
-## Additional Resources
+#### - FRONTEND: http://kimm-prueba-bancobogota91.s3-website.us-east-2.amazonaws.com/
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### - BACKEND:	 https://back-bancodebogota-608870366046.us-central1.run.app/
+
+
+
+## API ENDPOINTS:
+
+> - **GET Cliente:**
+>     - Url:  *`/api/v1/clientes/buscar`*
+>     - Query Parameters: *tipoDocumento: String*
+>                         *numeroDocumento: String*
+>     - Example: <https://back-bancodebogota-608870366046.us-central1.run.app/api/v1/clientes/buscar?tipoDocumento=C&numeroDocumento=23445322>
+>
+>
+> - **GET Archivo Clientes:**
+>     - Url:  *`/api/v1/clientes/download`*
+>     - Example: <https://back-bancodebogota-608870366046.us-central1.run.app/api/v1/clientes/download>
+>
+>
+> - **SWAGGER API Docs:**
+>     - Url:  *`/swagger-ui/index.html`*
+>     - Example: <https://back-bancodebogota-608870366046.us-central1.run.app/swagger-ui/index.html>
+
