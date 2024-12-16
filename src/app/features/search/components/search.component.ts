@@ -47,14 +47,18 @@ export class SearchComponent {
     this.showMsg = false;
     let docNumber = this.documentForm.get('docNumber')?.value ?? '';
     let docType = this.documentForm.get('docType')?.value ?? '';
-    
-    let cliente = this.clienteService.getDocumentMock(docNumber, docType);
-    if (!cliente) {
-      this.showMsg = true;
-      return;
-    }
-    this.clienteService.queryData.next({ data: cliente });
-    this.navigate(['/home']);
+
+    this.clienteService.getDocument(docNumber, docType)?.subscribe({
+      next: (data) => {
+        console.log('data', data);
+        this.clienteService.queryData.next({ data });
+        this.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('error', error);
+        this.showMsg = true;
+      },
+    });
   }
 
   navigate = (route: any[]) => {

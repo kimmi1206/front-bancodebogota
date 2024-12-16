@@ -21,7 +21,7 @@ export class ClienteService {
       return;
     }
     return this.http.get(
-      `${environment.URL_BASE}/clients?docNumber=${docNumber}&docType=${docType}`
+      `${environment.URL_BASE}/clientes/buscar?tipoDocumento=${docType}&numeroDocumento=${docNumber}`
     );
   }
 
