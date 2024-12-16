@@ -47,8 +47,8 @@ La guía para desplegar el frontend se encuentra en el link:<br>
 
 > - **GET Cliente:**
 >     - Url:  *`/api/v1/clientes/buscar`*
->     - Query Parameters: *tipoDocumento: String*
->                         *numeroDocumento: String*
+>     - Query Parameters: - *tipoDocumento: String*
+>                         - *numeroDocumento: String*
 >     - Example: <https://back-bancodebogota-608870366046.us-central1.run.app/api/v1/clientes/buscar?tipoDocumento=C&numeroDocumento=23445322>
 >
 >
